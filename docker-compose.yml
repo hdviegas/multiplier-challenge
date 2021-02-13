@@ -1,0 +1,62 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php
+    container_name: app-multiplier
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network-multiplier
+
+  webserver:
+    image: nginx:alpine
+    container_name: webserver-multiplier
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network-multiplier
+
+  db:
+    image: mysql:5.7.22
+    container_name: db-multiplier
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: multiplier
+      MYSQL_USER: 'multiplier'
+      MYSQL_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: '123456'
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./mysql/testing-db.sql:/docker-entrypoint-initdb.d/testing-db.sql
+    networks:
+      - app-network-multiplier
+
+networks:
+  app-network-multiplier:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
