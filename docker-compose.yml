@@ -5,8 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: php
-    container_name: app-multiplier
-    restart: unless-stopped
+    container_name: app-multiplier    
     tty: true
     environment:
       SERVICE_NAME: app
@@ -20,8 +19,7 @@ services:
 
   webserver:
     image: nginx:alpine
-    container_name: webserver-multiplier
-    restart: unless-stopped
+    container_name: webserver-multiplier    
     tty: true
     ports:
       - "80:80"
@@ -34,8 +32,7 @@ services:
 
   db:
     image: mysql:5.7.22
-    container_name: db-multiplier
-    restart: unless-stopped
+    container_name: db-multiplier    
     tty: true
     ports:
       - "3306:3306"

@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\BaseModel;
 use App\Models\EventLog;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class BaseObserver
 {
@@ -24,7 +25,7 @@ class BaseObserver
             'old_values' => null,
             'new_values' => $new_values,
             'references' => $references,
-            'user_id' => 
+            'user_id' => Auth::id()
         ]);
     }
 
@@ -46,7 +47,8 @@ class BaseObserver
                 'operation' => EventLog::OPERATION_UPDATE,
                 'old_values' => $old_values,
                 'new_values' => $new_values,
-                'references' => $references
+                'references' => $references,
+                'user_id' => Auth::id()
             ]);
         }
     }
@@ -67,7 +69,8 @@ class BaseObserver
             'operation' => EventLog::OPERATION_DELETE,
             'old_values' => $old_values,
             'new_values' => null,
-            'references' => $references
+            'references' => $references,
+            'user_id' => Auth::id()
         ]);
     }
 }

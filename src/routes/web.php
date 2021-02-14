@@ -16,3 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/customers', function () {
+    return view('pages.customers-list', ['columns'=>['name', 'email'], 'data'=>[['name'=>'Test Name', 'email'=>'email@test.com']]]);
+})->name('customers-list');
+
+Route::get('/products', function () {
+    return view('pages.customers-list', ['columns'=>['name', 'email'], 'data'=>[['name'=>'Test Name', 'email'=>'email@test.com']]]);
+})->name('products-list');
+
+Route::get('/orders', function () {
+    return view('pages.customers-list', ['columns'=>['name', 'email'], 'data'=>[['name'=>'Test Name', 'email'=>'email@test.com']]]);
+})->name('orders-list');
+
+Route::get('/product-categories', function () {
+    return view('pages.customers-list', ['columns'=>['name', 'email'], 'data'=>[['name'=>'Test Name', 'email'=>'email@test.com']]]);
+})->name('product-categories-list');
+
+Route::get('/users', function () {
+    return view('pages.customers-list', ['columns'=>['name', 'email'], 'data'=>[['name'=>'Test Name', 'email'=>'email@test.com']]]);
+})->name('users-list');

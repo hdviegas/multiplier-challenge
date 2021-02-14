@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-class ProductCategory extends BaseModel
+class ProductCategories extends BaseModel
 {
-    protected $table = 'products_category';
+    protected $table = 'product_categories';
     protected $observerCreatedReferenceFields = ['id','name'];
 }
