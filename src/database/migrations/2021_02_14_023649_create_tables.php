@@ -60,7 +60,8 @@ class CreateTables extends Migration
             $table->text("old_values")->nullable();
             $table->text("new_values")->nullable();
             $table->text("references");
-            $table->foreignId("user_id")->constrained('users');
+            //$table->foreignId("user_id")->constrained('users');
+            $table->integer("user_id");
             $table->timestamps();
         });
     }

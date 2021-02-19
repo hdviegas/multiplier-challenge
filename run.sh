@@ -3,22 +3,20 @@ app="app-multiplier"
 
 up (){
     run="docker-compose up -d"
-    runit    
+    runit 
 }
 
 build () {
     run="docker-compose up -d --build"
     runit
     run="docker run --rm -v $(pwd)/src:/app composer install"
-    runit
-    run="docker exec $app npm install"
-    runit
+    runit    
     run="docker exec $app php artisan key:generate"
     runit    
     run="docker exec $app php artisan migrate:fresh"  
     runit
     run="docker exec $app php artisan migrate:fresh --env=testing"   
-    runit
+    runit    
 }
 
 test (){

@@ -17,10 +17,11 @@ return [
             'id' => 'Id',
             'name' => 'Nome',
             'price' => 'Preço',
-            'category' => 'Categoria'
+            'category_id' => 'Categoria',
+            'category_name' => 'Categoria'
         ]
     ],
-    'products-categories' => [
+    'product-categories' => [
         'tittle' => 'Cadastro de Categorias',
         'page-name' => 'Categorias',
         'fields' => [

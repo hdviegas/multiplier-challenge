@@ -2,9 +2,9 @@
 
 @section('tittle', __("pages.customers.tittle"))
 @section('page-name', __("pages.customers.page-name"))
-@section('add-link', route('customers-add'))
+
 
 @section('content')
     @parent
-    @include('main.datagrid', ['page'=>'customers', 'columns'=>$columns, 'data'=>$data ?? []])
+    @include('main.form', ['page'=>'customers', 'method'=>$method, 'action'=>$action, 'fields'=>$fields, 'data'=>$data])
 @endsection
